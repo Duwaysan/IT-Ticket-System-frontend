@@ -6,11 +6,8 @@ import "./styles.css";
 export default function Navbar({ user, setUser }) {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // مخفي عند الدخول
   const [isOpen, setIsOpen] = useState(false);
 
-  // سكّر عند تغيّر الصفحة
   useEffect(() => setIsOpen(false), []);
 
   function handleLogout(e) {
@@ -22,13 +19,10 @@ export default function Navbar({ user, setUser }) {
 
   return (
     <>
-      {/* زر الثلاث خطوط */}
       <button  className="toggle-btn"  onClick={() => setIsOpen(v => !v)}  aria-expanded={isOpen}  aria-controls="side-nav">  ☰</button>
 
-      {/* خلفية لإغلاق السايدبار بالضغط خارج */}
       {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} />}
 
-      {/* السايدبار نفسه */}
       <nav id="side-nav" className={`side-nav ${isOpen ? "open" : ""}`}>
         <ul className="nav-elements">
           {user ? (
@@ -44,8 +38,8 @@ export default function Navbar({ user, setUser }) {
             </>
           ) : (
             <>
-              <li><Link to="/home"   onClick={() => setIsOpen(false)}>Home</Link></li>
-              <li><Link to="/signup" onClick={() => setIsOpen(false)}>SignUp</Link></li>
+              <li><Link to="/Login"   onClick={() => setIsOpen(false)}>Login</Link></li>
+              <li><Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link></li>
             </>
           )}
         </ul>

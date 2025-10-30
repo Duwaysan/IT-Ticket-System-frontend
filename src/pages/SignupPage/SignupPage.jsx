@@ -9,9 +9,9 @@ import * as usersAPI from "../../utilities/users-api.js"
 
 export default function SignupPage({ setUser }) {
     const navigate = useNavigate();
-    const initialState = { username: "", password: "", confirmPassword: "", email: "" }
+    const initialState = { username: "", nickname:"", password: "", confirmPassword: "", email: "" }
     const [formData, setFormData] = useState(initialState)
-    const [errors, setErrors] = useState({ username: '', password: '', email: '', confirmPassword: '' });
+    const [errors, setErrors] = useState({ username: '', nickname: '', password: '', email: '', confirmPassword: '' });
     let disabledSubmitBtn = Object.values(errors).every(val => val === "") && Object.values(formData).every(val => val !== "") ? false : true
 
     function handleChange(evt) {
@@ -24,6 +24,9 @@ export default function SignupPage({ setUser }) {
 
         if (target.name === 'username') {
             updateErrors.username = target.value.length < 3 ? 'Your username must be at least three characters long.' : "";
+        }
+        if (target.name === 'nickname') {
+            updateErrors.nickname = target.value.length < 3 ? 'Your nickname must be at least three characters long.' : "";
         }
         if (target.name === 'password') {
             updateErrors.password = target.value.length < 3 ? "Your password must be at least three characters long." : "";
@@ -42,6 +45,7 @@ export default function SignupPage({ setUser }) {
         try {
             evt.preventDefault()
             const newUser = await usersAPI.signup(formData);
+            console.log(newUser, "new user");
             setUser(newUser);
             setFormData(initialState)
             navigate("/tickets")
@@ -64,6 +68,14 @@ export default function SignupPage({ setUser }) {
                             <input type="text" value={formData.username} name="username" minLength="3" maxLength="150" onChange={handleChange} />
                             <br/>
                             { errors.username && <p>{errors.username}</p> }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label htmlFor="id_nickname">Nickname:</label></th>
+                        <td>
+                            <input type="text" value={formData.nickname} name="nickname" minLength="3" maxLength="150" onChange={handleChange} />
+                            <br/>
+                            { errors.nickname && <p>{errors.nickname}</p> }
                         </td>
                     </tr>
                     <tr>
