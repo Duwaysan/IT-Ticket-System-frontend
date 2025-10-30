@@ -1,0 +1,46 @@
+/* السايدبار مخفي أولاً */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -250px;         /* برا الشاشة */
+  width: 250px;
+  height: 100vh;
+  background: #0a796c;
+  color: #fff;
+  padding:  2.5rem;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  
+}
+.side-nav.open {
+  left: 0;
+  width: 5rem ;          
+}
+
+.side-nav ul { list-style: none; margin: 0; padding: 0; }
+.side-nav li { margin: 1rem 0; }
+.side-nav a { color: #fff; text-decoration: none; }
+
+/* زر القائمة */
+.toggle-btn {
+  position: fixed;
+  display: block;
+  top: 1rem;
+  left: 1rem;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  background: #053a34;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1100;        /* أعلى من السايدبار */
+}
+.nav-elements {
+
+}
+/* خلفية نصف شفافة */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 900;         /* تحت السايدبار وفوق المحتوى */
+}

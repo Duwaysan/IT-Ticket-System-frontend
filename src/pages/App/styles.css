@@ -1,0 +1,8 @@
+/* قاعدة عامة مفيدة */
+* { box-sizing: border-box; }
+
+/* مساحة تنفّس للمحتوى، وما ينحشر تحت زر القائمة */
+.app-content {
+  display: flex;
+  justify-content: center;
+}
