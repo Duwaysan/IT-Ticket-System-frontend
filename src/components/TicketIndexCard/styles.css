@@ -1,0 +1,44 @@
+.ticket-index-card {
+    border: 1px solid #158267;
+    border-radius: 8px;
+    padding: 16px 32px;
+    margin: 8px;
+    width: 700px;
+    
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.ticket-title { margin: 0 0 .25rem; }
+
+.ticket-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.date small {
+  color: #6B7280;
+}
+/* .ticket-meta p {
+    margin: 0px;
+} */
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.open-ticket {
+  background: #F59E0B;
+  border: 1.5px solid #D97706 
+}
+.closed-ticket {
+  background: #10B981;
+  border: 1.5px solid #059669;
+}
+
+
+
+
+

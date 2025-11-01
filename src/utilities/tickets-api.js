@@ -1,7 +1,10 @@
 import sendRequest from "./sendRequest";
+const url = "/tickets/"
 
 export function profileTickets(profileId) {
-    console.log("Fetching tickets for profile ID:", profileId);
-    return sendRequest(`/profiles/${profileId}/tickets/`);
+    return sendRequest(`/profiles/${profileId}${url}`);
 
+}
+export function show(ticketId) {
+    return sendRequest(`${url}${ticketId}/`);
 }
