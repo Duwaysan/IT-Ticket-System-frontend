@@ -12,24 +12,40 @@ import './styles.css';
 
 
 // APIs
-import { getUser } from '../../utilities/users-api';
+import { getUser, getManagers } from '../../utilities/users-api';
 
 
 
 function App() {
   const [managers, setManagers] = useState([]);
   const [user, setUser] = useState(null);
+  const [checkedUser, setCheckedUser] = useState(false);
+  
   useEffect(() => {
     async function checkUser() {
       const foundUser = await getUser();
       setUser(foundUser)
+      const managersData =  await getManagers();
+      setManagers(managersData);
+      setCheckedUser(true);
     }
     checkUser()
   }, [])
-  
+
+
+  if(!checkedUser){
+    return <h3>Loading...</h3>
+  }
+
   return (
     <>
       <Navbar user={user} setUser={setUser} />
+      {/* print managers */}
+      <div>
+      {/* { managers.length > 0 && managers.map((manager, index) => (
+        <h3 key={index}>{manager.nickname}</h3>
+      ))} */}
+    </div>
 
       <main id="app-content" className="app-content">
         <Routes>
@@ -38,7 +54,7 @@ function App() {
               <Route path="/*" element={<Navigate to="/tickets" />} />
               <Route path="/tickets" element={<TicketIndexPage user={user} setUser={setUser} />} />
               <Route path="/tickets/:id" element={<TicketDetailPage />} />
-              <Route path="/tickets/new" element={<TicketFormPage profileDetail={user.profile.id}/>}/>
+              {managers.length > 0 && <Route path="/tickets/new" element={<TicketFormPage profileDetail={user.profile} managersList={managers} />}/>}
             </>
           ) : (
             <>

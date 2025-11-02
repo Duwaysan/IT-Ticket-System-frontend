@@ -42,4 +42,14 @@ export async function getUser() {
         console.log(err);
         return null;
     }
+
+}
+export async function getManagers() {
+    try {
+        const response = await sendRequest(`${url}/managers/`)
+        return response;
+    } catch (err) {
+        console.log(err);
+        return [];
+    }
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import * as TicketAPI from "../../utilities/tickets-api.js"
 import NoteIndexCard from "../../components/TicketIndexCard/TicketIndexCard.jsx";
+import { Link } from "react-router-dom";
 
 export default function TicketIndexPage({ user, setUser }) {
   const [allTickets, setAllTickets] = useState([
@@ -22,15 +23,33 @@ export default function TicketIndexPage({ user, setUser }) {
     }
     if (allTickets.length === 0) getAllTickets()
   },[])
-  return (<>
 
+  
+  return (
+  <>
+    {!user.profile.is_manager ? (
       <main className="ticket-index">
-      <section className="page-header">
-            <h1>Tickets List</h1>
+        <section className="page-header">
+          <h1>Tickets List</h1>
+        </section>
+        <section className="new-ticket-button">
+          <Link to="/tickets/new">Create New Ticket</Link>
         </section>
         <section className="index-card-container">
-            {displayAllNotes}
+          {displayAllNotes}
         </section>
       </main>
-    </>)
+    ) : (
+      <main className="ticket-index">
+        <section className="page-header">
+          <h1>Tickets List</h1>
+        </section>
+        <section className="index-card-container">
+          {displayAllNotes}
+        </section>
+      </main>
+    )}
+  </>
+);
+
 }

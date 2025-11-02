@@ -8,3 +8,7 @@ export function profileTickets(profileId) {
 export function show(ticketId) {
     return sendRequest(`${url}${ticketId}/`);
 }
+
+export function create(formData, profileId) {
+    return sendRequest(`/profiles/${profileId}${url}`, "POST", formData)
+}
