@@ -51,16 +51,18 @@ function App() {
         <Routes>
           {user ? (
             <>
-              <Route path="/*" element={<Navigate to="/tickets" />} />
-              <Route path="/tickets" element={<TicketIndexPage user={user} setUser={setUser} />} />
-              <Route path="/tickets/:id" element={<TicketDetailPage />} />
-              {managers.length > 0 && <Route path="/tickets/new" element={<TicketFormPage profileDetail={user.profile} managersList={managers} />}/>}
+              <Route path="/*"                            element={<Navigate to="/tickets" />} />
+              <Route path="/tickets"                      element={<TicketIndexPage user={user} setUser={setUser} />} />
+              <Route path="/tickets/:id"                  element={<TicketDetailPage />} />
+              <Route path="/tickets/new"                  element={<TicketFormPage createTicket={true} profileDetail={user.profile} managersList={managers} />}/>
+              <Route path="/tickets/edit/:id"             element={<TicketFormPage editTicket={true}   profileDetail={user.profile} managersList={managers} />}/>
+              <Route path="/tickets/confirm_delete/:id"   element={<TicketFormPage deleteTicket={true} profileDetail={user.profile} managersList={managers} />}/>
             </>
           ) : (
             <>
-              <Route path="/*" element={<Navigate to="/login" />} />
-              <Route path="/login" element={<LoginPage user={user} setUser={setUser} />} />
-              <Route path="/signup" element={<SignupPage user={user} setUser={setUser} />} />
+              <Route path="/*"                            element={<Navigate to="/login" />} />
+              <Route path="/login"                        element={<LoginPage user={user} setUser={setUser} />} />
+              <Route path="/signup"                       element={<SignupPage user={user} setUser={setUser} />} />
             </>
           )}
         </Routes>

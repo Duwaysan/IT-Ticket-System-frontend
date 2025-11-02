@@ -29,7 +29,8 @@ export default function Navbar({ user, setUser }) {
             <>
               <li><Link to="/about"  onClick={() => setIsOpen(false)}>About</Link></li>
               <li><Link to="/tickets" onClick={() => setIsOpen(false)}>All tickets</Link></li>
-              <li><Link to="/tickets/new" onClick={() => setIsOpen(false)}>New ticket</Link></li>
+              {!user.profile.is_manager &&
+              <li><Link to="/tickets/new" onClick={() => setIsOpen(false)}>New ticket</Link></li>}
               <li>
                 <form onSubmit={handleLogout}>
                   <button type="submit">Log out</button>
