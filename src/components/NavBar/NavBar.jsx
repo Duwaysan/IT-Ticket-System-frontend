@@ -23,31 +23,53 @@ export default function Navbar({ user, setUser }) {
 
 
   <nav id="side-nav" className={`side-nav ${isOpen ? "open" : ""}`}>
-    <div className="nav-header">
-      <Link to={user ? "/tickets" : "/login"} className="brand" onClick={() => setIsOpen(true)}>
-         IT Ticket System
-      </Link>
-    </div>
+  <div className="nav-header">
+    <Link
+      to={user ? "/tickets" : "/login"}
+      className="brand"
+      onClick={() => setIsOpen(true)}
+    >
+      IT Ticket System
+    </Link>
+  </div>
 
-    <ul className="nav-elements">
-      {user ? (<>
-          <li><Link to="/about" onClick={() => setIsOpen(true)}>About</Link></li>
-          <li><Link to="/tickets" onClick={() => setIsOpen(true)}>All tickets</Link></li>
-          {!user.profile.is_manager && (
-            <li><Link to="/tickets/new" onClick={() => setIsOpen(true)}>New ticket</Link></li>
-          )}
-          <li className="nav-divider" aria-hidden="true"></li>
-          <li className="nav-footer">
-            <form onSubmit={handleLogout}>
-              <button type="submit" className="logout-btn">Log out</button>
-            </form>
-          </li>
-        </>) : (<>
-          <li><Link to="/login" onClick={() => setIsOpen(true)}>Login</Link></li>
-          <li><Link to="/signup" onClick={() => setIsOpen(true)}>Sign Up</Link></li>
-        </>)}
-    </ul>
-  </nav>
+  <ul className="nav-elements">
+    {user ? (
+      <>
+        <li><Link to="/about" onClick={() => setIsOpen(true)}>About</Link></li>
+        <li><Link to="/tickets" onClick={() => setIsOpen(true)}>All tickets</Link></li>
+        {!user.profile.is_manager && (
+          <li><Link to="/tickets/new" onClick={() => setIsOpen(true)}>New ticket</Link></li>
+        )}
+      </>
+    ) : (
+      <>
+        <li><Link to="/login" onClick={() => setIsOpen(true)}>Login</Link></li>
+        <li><Link to="/signup" onClick={() => setIsOpen(true)}>Sign Up</Link></li>
+      </>
+    )}
+  </ul>
+
+  {/* Bottom area */}
+  {user && (
+    <div className="nav-bottom">
+      <div className="user-card">
+        <div className="avatar">
+          {user.profile?.nickname?.[0]?.toUpperCase() || user.username?.[0]?.toUpperCase() || "U"}
+        </div>
+        <div className="user-meta">
+          <div className="name">{user.profile?.nickname || user.username}</div>
+          <div className="role">{user.profile?.is_manager ? "Manager" : "Employee"}</div>
+        </div>
+      </div>
+
+      <form onSubmit={handleLogout}>
+        <button type="submit" className="logout-btn">Log out</button>
+      </form>
+    </div>
+  )}
+</nav>
+
 </>
 
   );

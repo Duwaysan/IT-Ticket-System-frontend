@@ -2,34 +2,30 @@ html, body {
   overflow-x: hidden;
 }
 
-
+/* === SIDENAV LAYOUT === */
 .side-nav {
   position: fixed;
-  inset: 0 auto 0 0;          
+  inset: 0 auto 0 0;         /* top:0 right:auto bottom:0 left:0 */
   width: 260px;
   background: #ffffff;
   border-right: 1px solid #e2e8f0;
   box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  transform: translateX(-100%);         
+  transform: translateX(-100%);
   transition: transform 0.25s ease;
   z-index: 1000;
-  display: flex;
+
+  display: flex;             /* column layout so we can pin bottom area */
   flex-direction: column;
+  height: 100vh;             /* full height */
 }
 
-.side-nav.open {
-  transform: translateX(0);
-}
+.side-nav.open { transform: translateX(0); }
 
+/* shift content when open */
+.side-nav.open ~ main.app-content { padding-left: 260px; }
+main.app-content { transition: padding-left 0.25s ease; }
 
-.side-nav.open ~ main.app-content {
-  padding-left: 260px;                  
-}
-main.app-content {
-  transition: padding-left 0.25s ease;  
-}
-
-
+/* === HEADER === */
 .nav-header {
   display: flex;
   align-items: center;
@@ -38,30 +34,24 @@ main.app-content {
   padding: 14px 16px;
   border-bottom: 1px solid #e6e6e6;
 }
-
-.brand {
-  font-weight: 800;
-  font-size: 18px;
-  color: #0f172a;
-}
+.brand { font-weight: 800; font-size: 18px; color: #0f172a; }
 
 .close-btn {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
-  line-height: 1;
+  width: 32px; height: 32px;
+  font-size: 18px; line-height: 1;
   cursor: pointer;
 }
 
+/* === LINKS (SCROLLABLE AREA) === */
 .nav-elements {
   list-style: none;
   margin: 0;
   padding: 8px 0;
   overflow-y: auto;
-  flex: 1;
+  flex: 1;                   /* take remaining height, pushes .nav-bottom down */
 }
 
 .nav-elements li a {
@@ -72,54 +62,66 @@ main.app-content {
   border-radius: 6px;
   margin: 4px 8px;
 }
+.nav-elements li a:hover { background: #f1f5f9; color: #059669; }
 
-.nav-elements li a:hover {
-  background: #f1f5f9;
-  color: #059669;
+.nav-divider { height: 1px; background: #eef2f6; margin: 8px 12px; }
+
+/* hide old footer hook if it still exists in DOM */
+.nav-footer { display: none; }
+
+/* === BOTTOM (USER + LOGOUT) === */
+.nav-bottom {
+  margin-top: auto;          /* stick this block to the bottom */
+  border-top: 1px solid #e5e7eb;
+  padding: 12px;
+  display: grid;
+  gap: 12px;
 }
 
-.nav-divider {
-  height: 1px;
-  background: #eef2f6;
-  margin: 8px 12px;
+/* user mini-card */
+.user-card {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 10px;
 }
-
-.nav-footer {
-  margin-top: auto;
-  padding: 8px 12px 14px;
+.user-card .avatar {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #0f766e;       /* teal */
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
+.user-meta .name { font-weight: 700; color: #0f172a; line-height: 1.1; }
+.user-meta .role { font-size: 12px; color: #64748b; }
 
+/* logout button full width */
 .logout-btn {
   width: 100%;
   background: #0f766e;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px 14px;
   font-weight: 700;
   cursor: pointer;
 }
+.logout-btn:hover { background: #115e59; }
 
-.logout-btn:hover {
-  background: #115e59;
-}
-
-
+/* === TOGGLER & OVERLAY === */
 .toggle-btn {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 1200;                 
+  top: 12px; left: 12px;
+  z-index: 1200;
   background: #0f766e;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
-  width: 40px;
-  height: 36px;
-  font-size: 18px;
-  line-height: 1;
+  width: 40px; height: 36px;
+  font-size: 18px; line-height: 1;
   cursor: pointer;
 }
-
 
 .overlay {
   position: fixed;
@@ -127,7 +129,5 @@ main.app-content {
   background: rgba(15, 23, 42, 0.25);
   z-index: 900;
   display: none;
-  pointer-events: none;          
+  pointer-events: none;
 }
-
-
