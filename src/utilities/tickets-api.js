@@ -25,3 +25,8 @@ export async function update(formData, ticketId) {
 export async function deleteTicket(ticketId) {
     return sendRequest(`${url}${ticketId}/`, "DELETE")
 }
+
+
+export async function getAIResponse(ticketId) {
+  return sendRequest(`/tickets/${ticketId}/ai-response/`, 'GET');
+}
