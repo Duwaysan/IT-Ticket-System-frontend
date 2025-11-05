@@ -74,7 +74,15 @@ npm run dev
 
 ```
 ----
-
+## Docker
+### Run Docker
+```bash
+docker compose up --build -d
+```
+### Stop Docker
+```bash
+docker compose down
+```
 ## Features
 
 - User signup and login with JWT auth
