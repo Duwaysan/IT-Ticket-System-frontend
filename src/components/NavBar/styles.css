@@ -2,10 +2,10 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === SIDENAV LAYOUT === */
+
 .side-nav {
   position: fixed;
-  inset: 0 auto 0 0;         /* top:0 right:auto bottom:0 left:0 */
+  inset: 0 auto 0 0;         
   width: 260px;
   background: #ffffff;
   border-right: 1px solid #e2e8f0;
@@ -14,18 +14,18 @@ html, body {
   transition: transform 0.25s ease;
   z-index: 1000;
 
-  display: flex;             /* column layout so we can pin bottom area */
+  display: flex;             
   flex-direction: column;
-  height: 100vh;             /* full height */
+  height: 100vh;             
 }
 
 .side-nav.open { transform: translateX(0); }
 
-/* shift content when open */
+
 .side-nav.open ~ main.app-content { padding-left: 260px; }
 main.app-content { transition: padding-left 0.25s ease; }
 
-/* === HEADER === */
+
 .nav-header {
   display: flex;
   align-items: center;
@@ -45,13 +45,13 @@ main.app-content { transition: padding-left 0.25s ease; }
   cursor: pointer;
 }
 
-/* === LINKS (SCROLLABLE AREA) === */
+
 .nav-elements {
   list-style: none;
   margin: 0;
   padding: 8px 0;
   overflow-y: auto;
-  flex: 1;                   /* take remaining height, pushes .nav-bottom down */
+  flex: 1;                   
 }
 
 .nav-elements li a {
@@ -66,19 +66,19 @@ main.app-content { transition: padding-left 0.25s ease; }
 
 .nav-divider { height: 1px; background: #eef2f6; margin: 8px 12px; }
 
-/* hide old footer hook if it still exists in DOM */
+
 .nav-footer { display: none; }
 
-/* === BOTTOM (USER + LOGOUT) === */
+
 .nav-bottom {
-  margin-top: auto;          /* stick this block to the bottom */
+  margin-top: auto;          
   border-top: 1px solid #e5e7eb;
   padding: 12px;
   display: grid;
   gap: 12px;
 }
 
-/* user mini-card */
+
 .user-card {
   display: grid;
   grid-template-columns: 44px 1fr;
@@ -89,7 +89,7 @@ main.app-content { transition: padding-left 0.25s ease; }
   width: 44px; height: 44px;
   display: grid; place-items: center;
   border-radius: 50%;
-  background: #0f766e;       /* teal */
+  background: #0f766e;       
   color: #fff;
   font-weight: 800;
   letter-spacing: 0.5px;
@@ -97,7 +97,7 @@ main.app-content { transition: padding-left 0.25s ease; }
 .user-meta .name { font-weight: 700; color: #0f172a; line-height: 1.1; }
 .user-meta .role { font-size: 12px; color: #64748b; }
 
-/* logout button full width */
+
 .logout-btn {
   width: 100%;
   background: #0f766e;
@@ -110,7 +110,7 @@ main.app-content { transition: padding-left 0.25s ease; }
 }
 .logout-btn:hover { background: #115e59; }
 
-/* === TOGGLER & OVERLAY === */
+
 .toggle-btn {
   position: fixed;
   top: 12px; left: 12px;

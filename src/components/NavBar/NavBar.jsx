@@ -24,13 +24,7 @@ export default function Navbar({ user, setUser }) {
 
   <nav id="side-nav" className={`side-nav ${isOpen ? "open" : ""}`}>
   <div className="nav-header">
-    <Link
-      to={user ? "/tickets" : "/login"}
-      className="brand"
-      onClick={() => setIsOpen(true)}
-    >
-      IT Ticket System
-    </Link>
+    <Link to={user ? "/tickets" : "/login"} className="brand" onClick={() => setIsOpen(true)} > IT Ticket System </Link>
   </div>
 
   <ul className="nav-elements">
@@ -50,7 +44,6 @@ export default function Navbar({ user, setUser }) {
     )}
   </ul>
 
-  {/* Bottom area */}
   {user && (
     <div className="nav-bottom">
       <div className="user-card">
