@@ -27,21 +27,45 @@ async function handleLogin(evt) {
 }
 
   return (<>
-    {!user &&
-      <section>
-        <form onSubmit={handleLogin} className="form-container login">
-          <h1>Login</h1>
-          <p>
-            <label htmlFor="id_username">Username:</label>
-            <input value={formData.username} type="text" name="username" maxLength="150" required id="id_username" onChange={handleChange}/>
-          </p>
-          <p>
-            <label htmlFor="id_password">Password:</label>
-            <input value={formData.password} type="password" name="password" required id="id_password" onChange={handleChange} />
-          </p>
-          <button type="submit" className="btn submit">Login</button>
-        </form>
-      </section>
-    }
-  </>)
+  {!user && (
+    <>
+      <header className="page-header">
+        <h1>Welcome back</h1>
+        <p className="sub">Please sign in to continue.</p>
+      </header>
+
+      <form onSubmit={handleLogin} className="login-form" noValidate>
+        <div className="field">
+          <label htmlFor="id_username">Username</label>
+          <input
+            id="id_username"
+            type="text"
+            name="username"
+            value={formData.username}
+            maxLength="150"
+            required
+            autoComplete="username"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <label htmlFor="id_password">Password</label>
+          <input
+            id="id_password"
+            type="password"
+            name="password"
+            value={formData.password}
+            required
+            autoComplete="current-password"
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit" className="login-btn">Log in</button>
+      </form>
+    </>
+  )}
+</>
+)
 }

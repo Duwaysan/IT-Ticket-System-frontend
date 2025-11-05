@@ -1,18 +1,47 @@
+/* Page container */
 .ticket-index {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 16px;
 }
 
-.new-ticket-button {
-    align-self: flex-end; 
-    margin-right: 20px;
-    background-color: #196a56;
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
-    
+/* Header */
+.page-header {
+  text-align: center;
+}
+.page-header h1 {
+  color: #0f172a;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
 
+/* New ticket button */
+.new-ticket-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.new-ticket-button a {
+  background-color: #0f766e;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 18px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.05s ease;
+}
+.new-ticket-button a:hover {
+  background-color: #115e59;
+  transform: translateY(-1px);
+}
+
+/* Grid for cards */
+.index-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
 }

@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-// IMAGES
+
 
 // APIs
 import * as usersAPI from "../../utilities/users-api.js"
+import "./styles.css"
 
 export default function SignupPage({ setUser }) {
     const navigate = useNavigate();
@@ -56,55 +57,90 @@ export default function SignupPage({ setUser }) {
     }
 
     return (<>
-        <div className="page-header">
-            <h1>Sign Up</h1>
-        </div>
-        <form onSubmit={handleSubmit} className="form-container signup">
-            <table>
-                <tbody>
-                    <tr>
-                        <th><label htmlFor="id_username">Username:</label></th>
-                        <td>
-                            <input type="text" value={formData.username} name="username" minLength="3" maxLength="150" onChange={handleChange} />
-                            <br/>
-                            { errors.username && <p>{errors.username}</p> }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label htmlFor="id_nickname">Nickname:</label></th>
-                        <td>
-                            <input type="text" value={formData.nickname} name="nickname" minLength="3" maxLength="150" onChange={handleChange} />
-                            <br/>
-                            { errors.nickname && <p>{errors.nickname}</p> }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label htmlFor="id_email">Email:</label></th>
-                        <td>
-                            <input type="text" value={formData.email} name="email" minLength="3" maxLength="150" onChange={handleChange} />
-                            <br/>
-                            { errors.email && <p>{errors.email}</p> }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label htmlFor="id_password1">Password:</label></th>
-                        <td>
-                            <input type="password" value={formData.password} name="password" minLength="3" onChange={handleChange} />
-                            <br/>
-                            { errors.password && <p>{errors.password}</p> }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label htmlFor="id_password2">Password confirmation:</label></th>
-                        <td>
-                            <input type="password" value={formData.confirmPassword} name="confirmPassword" onChange={handleChange}/>
-                            <br/>
-                            { errors.confirmPassword && <p>{errors.confirmPassword}</p> }
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="submit" disabled={disabledSubmitBtn} className="btn submit">Submit!</button>
-        </form>
-    </>)
+  <header className="page-header">
+    <h1>Create your account</h1>
+  </header>
+
+  <form onSubmit={handleSubmit} className="signup-form" noValidate>
+    <div className="form-grid">
+      <div className="field">
+        <label htmlFor="id_username">Username</label>
+        <input
+          id="id_username"
+          type="text"
+          name="username"
+          value={formData.username}
+          minLength="3"
+          maxLength="150"
+          onChange={handleChange}
+          autoComplete="username"
+        />
+        {errors.username && <span className="error">{errors.username}</span>}
+      </div>
+
+      <div className="field">
+        <label htmlFor="id_nickname">Nickname</label>
+        <input
+          id="id_nickname"
+          type="text"
+          name="nickname"
+          value={formData.nickname}
+          minLength="3"
+          maxLength="150"
+          onChange={handleChange}
+          autoComplete="nickname"
+        />
+        {errors.nickname && <span className="error">{errors.nickname}</span>}
+      </div>
+
+      <div className="field span-2">
+        <label htmlFor="id_email">Email</label>
+        <input
+          id="id_email"
+          type="email"
+          name="email"
+          value={formData.email}
+          maxLength="150"
+          onChange={handleChange}
+          autoComplete="email"
+        />
+        {errors.email && <span className="error">{errors.email}</span>}
+      </div>
+
+      <div className="field">
+        <label htmlFor="id_password1">Password</label>
+        <input
+          id="id_password1"
+          type="password"
+          name="password"
+          value={formData.password}
+          minLength="3"
+          onChange={handleChange}
+          autoComplete="new-password"
+        />
+        {errors.password && <span className="error">{errors.password}</span>}
+      </div>
+
+      <div className="field">
+        <label htmlFor="id_password2">Confirm Password</label>
+        <input
+          id="id_password2"
+          type="password"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          autoComplete="new-password"
+        />
+        {errors.confirmPassword && (
+          <span className="error">{errors.confirmPassword}</span>
+        )}
+      </div>
+    </div>
+
+    <button type="submit" disabled={disabledSubmitBtn} className="submit-btn">
+      Create account
+    </button>
+  </form>
+</>
+)
 }

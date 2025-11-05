@@ -8,7 +8,7 @@ export default function Navbar({ user, setUser }) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => setIsOpen(false), []);
+  useEffect(() => setIsOpen(true), []);
 
   function handleLogout(e) {
     e.preventDefault();
@@ -18,33 +18,37 @@ export default function Navbar({ user, setUser }) {
   }
 
   return (
-    <>
-      <button  className="toggle-btn"  onClick={() => setIsOpen(v => !v)}  aria-expanded={isOpen}  aria-controls="side-nav">  ☰</button>
+<>
+  <button className="toggle-btn" onClick={() => setIsOpen(o => !o)} aria-expanded={isOpen} aria-controls="side-nav" > ☰ </button>
 
-      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} />}
 
-      <nav id="side-nav" className={`side-nav ${isOpen ? "open" : ""}`}>
-        <ul className="nav-elements">
-          {user ? (
-            <>
-              <li><Link to="/about"  onClick={() => setIsOpen(false)}>About</Link></li>
-              <li><Link to="/tickets" onClick={() => setIsOpen(false)}>All tickets</Link></li>
-              {!user.profile.is_manager &&
-              <li><Link to="/tickets/new" onClick={() => setIsOpen(false)}>New ticket</Link></li>}
-              <li>
-                <form onSubmit={handleLogout}>
-                  <button type="submit">Log out</button>
-                </form>
-              </li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/Login"   onClick={() => setIsOpen(false)}>Login</Link></li>
-              <li><Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link></li>
-            </>
+  <nav id="side-nav" className={`side-nav ${isOpen ? "open" : ""}`}>
+    <div className="nav-header">
+      <Link to={user ? "/tickets" : "/login"} className="brand" onClick={() => setIsOpen(true)}>
+         IT Ticket System
+      </Link>
+    </div>
+
+    <ul className="nav-elements">
+      {user ? (<>
+          <li><Link to="/about" onClick={() => setIsOpen(true)}>About</Link></li>
+          <li><Link to="/tickets" onClick={() => setIsOpen(true)}>All tickets</Link></li>
+          {!user.profile.is_manager && (
+            <li><Link to="/tickets/new" onClick={() => setIsOpen(true)}>New ticket</Link></li>
           )}
-        </ul>
-      </nav>
-    </>
+          <li className="nav-divider" aria-hidden="true"></li>
+          <li className="nav-footer">
+            <form onSubmit={handleLogout}>
+              <button type="submit" className="logout-btn">Log out</button>
+            </form>
+          </li>
+        </>) : (<>
+          <li><Link to="/login" onClick={() => setIsOpen(true)}>Login</Link></li>
+          <li><Link to="/signup" onClick={() => setIsOpen(true)}>Sign Up</Link></li>
+        </>)}
+    </ul>
+  </nav>
+</>
+
   );
 }

@@ -1,46 +1,133 @@
-/* السايدبار مخفي أولاً */
+html, body {
+  overflow-x: hidden;
+}
+
+
 .side-nav {
   position: fixed;
-  top: 0;
-  left: -250px;         /* برا الشاشة */
-  width: 250px;
-  height: 100vh;
-  background: #0a796c;
-  color: #fff;
-  padding:  2.5rem;
-  transition: left 0.3s ease;
+  inset: 0 auto 0 0;          
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transform: translateX(-100%);         
+  transition: transform 0.25s ease;
   z-index: 1000;
-  
+  display: flex;
+  flex-direction: column;
 }
+
 .side-nav.open {
-  left: 0;
-  /* width: 5rem ;           */
+  transform: translateX(0);
 }
 
-.side-nav ul { list-style: none; margin: 0; padding: 0; }
-.side-nav li { margin: 1rem 0; }
-.side-nav a { color: #fff; text-decoration: none; }
 
-/* زر القائمة */
+.side-nav.open ~ main.app-content {
+  padding-left: 260px;                  
+}
+main.app-content {
+  transition: padding-left 0.25s ease;  
+}
+
+
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.close-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nav-elements {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.nav-elements li a {
+  display: block;
+  padding: 10px 16px;
+  color: #0d9488;
+  font-weight: 600;
+  border-radius: 6px;
+  margin: 4px 8px;
+}
+
+.nav-elements li a:hover {
+  background: #f1f5f9;
+  color: #059669;
+}
+
+.nav-divider {
+  height: 1px;
+  background: #eef2f6;
+  margin: 8px 12px;
+}
+
+.nav-footer {
+  margin-top: auto;
+  padding: 8px 12px 14px;
+}
+
+.logout-btn {
+  width: 100%;
+  background: #0f766e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #115e59;
+}
+
+
 .toggle-btn {
   position: fixed;
-  display: block;
-  top: 1rem;
-  left: 1rem;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  background: #053a34;
-  color: #fff;
+  top: 12px;
+  left: 12px;
+  z-index: 1200;                 
+  background: #0f766e;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  width: 40px;
+  height: 36px;
+  font-size: 18px;
+  line-height: 1;
   cursor: pointer;
-  z-index: 1100;        /* أعلى من السايدبار */
 }
-.nav-elements {
 
-}
-/* خلفية نصف شفافة */
+
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.35);
-  z-index: 900;         /* تحت السايدبار وفوق المحتوى */
+  background: rgba(15, 23, 42, 0.25);
+  z-index: 900;
+  display: none;
+  pointer-events: none;          
 }
+
+

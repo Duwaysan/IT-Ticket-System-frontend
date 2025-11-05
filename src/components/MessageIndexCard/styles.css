@@ -1,0 +1,133 @@
+
+.message-card {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f0faf7; 
+  border: 1px solid #cce3dc;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  position: relative; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+.message-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  margin-right: 16px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #0f766e;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.role {
+  background-color: #e9f2fb;
+  color: #334155;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+
+.role-manager {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.role-employee {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+
+.message-content {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 14px 18px;
+  border: 1px solid #e5e7eb;
+  min-height: 140px;
+  margin: 0 0 20px 0;
+}
+
+.message-content .text {
+  margin: 0;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left; 
+  direction: ltr;   
+  word-break: break-word;
+}
+
+
+[dir="rtl"] .message-content .text {
+  text-align: right;
+  direction: rtl;
+}
+
+
+.message-card .time {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 13px;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+
+
+.msg-actions{
+  display: flex;
+}
+.msg-edit,
+.msg-delete {
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  color: white;
+  font-weight: 500;
+  margin: 3px;
+}
+
+.msg-edit {
+  background-color: #0f766e;
+}
+
+.msg-delete {
+  background-color: #c51e1e;
+}
+
+.msg-edit:hover {
+  background-color: #115e59;
+}
+
+.msg-delete:hover {
+  background-color: #a11919;
+}

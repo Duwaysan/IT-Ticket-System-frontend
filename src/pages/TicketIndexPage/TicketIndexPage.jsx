@@ -11,7 +11,7 @@ export default function TicketIndexPage({ user, setUser }) {
   // {title:"Another Ticket", description:"This is another sample ticket description."}
   ])
   
-  const displayAllNotes = allTickets.map((t,idx)=>(
+  const displayAllTickets = allTickets.map((t,idx)=>(
     <NoteIndexCard key={idx} ticket={t} user={user}/>
   ))
 
@@ -36,7 +36,7 @@ export default function TicketIndexPage({ user, setUser }) {
           <Link to="/tickets/new">Create New Ticket</Link>
         </section>
         <section className="index-card-container">
-          {displayAllNotes}
+          {displayAllTickets}
         </section>
       </main>
     ) : (
@@ -45,7 +45,7 @@ export default function TicketIndexPage({ user, setUser }) {
           <h1>Tickets List</h1>
         </section>
         <section className="index-card-container">
-          {displayAllNotes}
+          {displayAllTickets}
         </section>
       </main>
     )}
