@@ -125,24 +125,11 @@ export default function TicketDetailPage({ user }) {
               {!user.profile.is_manager && !ticketDetail.is_resolved && (
                 <>
                   <div className="actions">
-                    <Link
-                      to={`/tickets/edit/${ticketDetail.id}`}
-                      className="btn warn"
-                    >
-                      Edit
-                    </Link>
-                    <Link
-                      to={`/tickets/confirm_delete/${ticketDetail.id}`}
-                      className="btn danger"
-                    >
-                      Delete
-                    </Link>
+                    <Link to={`/tickets/edit/${ticketDetail.id}`} className="btn warn" > Edit </Link>
+                    <Link to={`/tickets/confirm_delete/${ticketDetail.id}`} className="btn danger" > Delete </Link>
                   </div>
 
-                  <button className="ai-response-button" onClick={handleAI}>
-                    AI Response
-                  </button>
-
+                  <button className="ai-response-button" onClick={handleAI}> AI Response </button>
                   <Modal open={aiOpen} onClose={() => setAiOpen(false)} title="AI Response">
                     {loadingAI ? "Loading..." : aiText}
                   </Modal>
@@ -150,31 +137,22 @@ export default function TicketDetailPage({ user }) {
               )}
 
               {aiErr && <div className="ai-error">{aiErr}</div>}
-              {aiText && (
+              {/* {aiText && (
                 <div className="ai-panel">
                   <pre>{aiText}</pre>
                 </div>
-              )}
+              )} */}
             </article>
           </div>
         </section>
-
         <section className="messages">
           <div className="subsection-title">
             <h2>Messages</h2>
           </div>
-
           <div className="messages-list">{displayAllMessages}</div>
 
           {!ticketDetail.is_resolved && (
-            <div className="messages-form-wrap">
-              <MessageForm
-                ticketDetail={ticketDetail}
-                ticketMessages={ticketMessages}
-                setTicketMessages={setTicketMessages}
-                user={user?.profile || user}
-              />
-            </div>
+            <div className="messages-form-wrap"> <MessageForm ticketDetail={ticketDetail} ticketMessages={ticketMessages} setTicketMessages={setTicketMessages} user={user?.profile || user} /> </div>
           )}
         </section>
       </main>
